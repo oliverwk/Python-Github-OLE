@@ -79,7 +79,9 @@ def Image():
  dest = '/Users/MWK/Desktop/tatiana/tatiana_art_{n}.jpg'.format(n=x)
 
  os.rename(source, dest)
-
+ from PIL import Image
+ img = Image.open(dest)
+ img.show()
  sys.exit
 
 def Video():
@@ -95,17 +97,38 @@ def Video():
 
     soup = BeautifulSoup(page.content, 'html.parser')
 
-    video = soup.find("meta",  property="og:vide")
+    video = soup.find("meta",  property="og:video")
 
     print("")
     print(video["content"] if video else "Er is geen afbeelding.")
     print("")
     #test link https://www.instagram.com/p/B-PZFIvAT7a/
 
-    #test link googe docs https://docs.google.com/document/d/17WRu2xbcR_yqTmWaebbTjlKUcdCqNb-3wDx5A_SHui8/edit?usp=sharing
     import wget
+    
+    base_dir = os.path.dirname(os.path.abspath(__file__))
+    target = "tatiana_art"
+    prefix_list = ["91018230_151840196296351_1894637158564459764_n"]
 
-    local_image_filename = wget.download(video["content"])
+    for prefix in prefix_list:
+        path = os.path.join(base_dir, "tatiana")
+        if not os.path.exists(path):
+            os.mkdir(path)
+        if not os.path.isdir(path):
+            exit()
+
+
+    local_image_filename = wget.download(video["content"], out=path)
+
+
+    x = len(os.listdir('/Users/MWK/Desktop/tatiana/'))+1
+    #print(x)
+
+    source = local_image_filename
+
+    dest = '/Users/MWK/Desktop/tatiana/tatiana_art_{n}.mp4'.format(n=x)
+
+    os.rename(source, dest)
 
     print("")
     print("\nklaar ja kan nu naar de map OLE gaan")

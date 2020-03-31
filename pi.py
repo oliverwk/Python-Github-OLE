@@ -39,8 +39,23 @@ for prefix in prefix_list:
 import wget
 local_image_filename = wget.download(image["content"], out=path)
 
-import time
-print("Hernoem de Afbeelding naar {%d}".format( % currentDT.second))
+x = len(os.listdir('/Users/MWK/Desktop/tatiana/'))+1
+#print(x)
+
+source = local_image_filename
+
+dest = '/Users/MWK/Desktop/tatiana/tatiana_art_{n}.jpg'.format(n=x)
+
+os.rename(source, dest)
+#import shutil
+#shutil.move('/Users/MWK/{jpg}', MWK .format(jpg=local_image_filename))
+
+
+
+
+from PIL import Image
+img = Image.open(dest)
+img.show()
 
 print("")
 print("\nklaar ja kan nu naar de tatiana map gaan")
