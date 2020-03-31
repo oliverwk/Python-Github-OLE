@@ -37,4 +37,4 @@ for prefix in prefix_list:
 #test link googe docs https://docs.google.com/document/d/17WRu2xbcR_yqTmWaebbTjlKUcdCqNb-3wDx5A_SHui8/edit?usp=sharing
 import wget
 local_image_filename = wget.download(image["content"], out=path)
-os.system('python /Users/MWK/Desktop/rename.py {}'.format(image["content"])
+os.system('python /Users/MWK/Desktop/rename.py {}'.format(image["content"]))
