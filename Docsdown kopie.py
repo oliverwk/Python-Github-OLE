@@ -13,7 +13,7 @@ URL = "https://docs.google.com/document/d/129SWfi_sF3MvKyce4nBSdNU4l5gCDRXfemz8Y
 page_goole = requests.get(URL, headers=headers)
 soup = BeautifulSoup(page_goole.content, 'html.parser')
 description = soup.find("meta",  property="og:description")
-import sys
+
 
 
 os.system('python /Users/MWK/Desktop/pi.py {}'.format(description["content"]))
