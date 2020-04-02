@@ -5,8 +5,15 @@ b = raw_input("Voer het nummer in dat je kleiner wilt maken: ")
 x = len(os.listdir('/Users/MWK/Desktop/tatiana/'))-1
 
 img = Image.open('/Users/MWK/Desktop/tatiana/tatiana_art_{n}.jpg'.format(n=b))
-height = img.size
-print("current size {n}" .format(n=height))
+#height = img.size
+#print("current size {n}" .format(n=height))
 
-new_image = img.resize((135, 180))
-new_image.save('/Users/MWK/Desktop/tatiana/tatiana_art_{n}.jpg'.format(n=x))
+#new_image = img.resize((135, 180))
+#new_image.save('/Users/MWK/Desktop/tatiana/tatiana_art_{n}.jpg'.format(n=x))
+#
+#file = open("/Users/MWK/Desktop/tatiana/tatiana_art_9.jpg", "a+b")
+#file.write("\xff\xfeCOMMENT")
+file.close()
+#file = open(img, "a")
+#file.write("\xff\xfeCOMMENT")
+#file.close()
