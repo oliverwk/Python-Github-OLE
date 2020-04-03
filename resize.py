@@ -1,19 +1,21 @@
-from PIL import Image
-import os
+from PIL.ExifTags import GPSTAGS
 
-b = raw_input("Voer het nummer in dat je kleiner wilt maken: ")
-x = len(os.listdir('/Users/MWK/Desktop/tatiana/'))-1
+def get_geotagging(exif):
+    if not exif:
+        raise ValueError("No EXIF metadata found")
 
-img = Image.open('/Users/MWK/Desktop/tatiana/tatiana_art_{n}.jpg'.format(n=b))
-#height = img.size
-#print("current size {n}" .format(n=height))
+    geotagging = {}
+    for (idx, tag) in TAGS.items():
+        if tag == 'GPSInfo':
+            if idx not in exif:
+                raise ValueError("No EXIF geotagging found")
 
-#new_image = img.resize((135, 180))
-#new_image.save('/Users/MWK/Desktop/tatiana/tatiana_art_{n}.jpg'.format(n=x))
-#
-#file = open("/Users/MWK/Desktop/tatiana/tatiana_art_9.jpg", "a+b")
-#file.write("\xff\xfeCOMMENT")
-file.close()
-#file = open(img, "a")
-#file.write("\xff\xfeCOMMENT")
-#file.close()
+            for (key, val) in GPSTAGS.items():
+                if key in exif[idx]:
+                    geotagging[val] = exif[idx][key]
+
+    return geotagging
+
+exif = get_exif('/Users/MWK/Desktop/tatiana/tatiana_art_20.jpg')
+geotags = get_geotagging(exif)
+print(geotags)
