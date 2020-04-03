@@ -1,13 +1,15 @@
 import os
+os.system('clear')
 import urllib
 import requests
 from bs4 import BeautifulSoup
 import sys
-os.system('clear')
+import wget
+
 DOWNLOADS_DIR = '/Users/MWK/Desktop/tatiana'
 
 # For every line in the file
-for url in open('tatiana_down.txt'):
+for url in open('/User/MWK/Desktop/tatiana_down.txt'):
     # Split on the rightmost / and take everything on the right side of that
     name = url.rsplit('/', 1)[-1]
 
@@ -25,7 +27,7 @@ for url in open('tatiana_down.txt'):
 
     title = soup.find("meta",  property="og:title")
 
-    print(image["content"] if title else "Er is geen afbeelding.")
+    print(image["content"] if image else "Er is geen afbeelding.")
     print("")
     print("Dit is de beschrijving:")
     print(title["content"] if title else "Er is geen beschrijving.")
@@ -34,7 +36,7 @@ for url in open('tatiana_down.txt'):
     # Combine the name and the downloads directory to get the local filename
     #filename = os.path.join(DOWNLOADS_DIR, name)
 
-    import wget
+   
     #test link googe docs https://docs.google.com/document/d/17WRu2xbcR_yqTmWaebbTjlKUcdCqNb-3wDx5A_SHui8/edit?usp=sharing
     base_dir = os.path.dirname(os.path.abspath(__file__))
     target = "tatiana_art"
