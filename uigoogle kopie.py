@@ -23,14 +23,14 @@ def getSquareRoot ():
 
 
     headers = {"User-Agent": 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_3) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.0.5 Safari/605.1.15'}
-    ggg = entry1.get()
-    page = requests.get(ggg, headers={"User-Agent": 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_3) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.0.5 Safari/605.1.15'})
+ggg = entry1.get()
+page = requests.get(ggg, headers={"User-Agent": 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_3) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.0.5 Safari/605.1.15'})
 
-    soup = BeautifulSoup(page.content, 'html.parser')
+soup = BeautifulSoup(page.content, 'html.parser')
 
-    description = soup.find("meta",  property="og:description")
+description = soup.find("meta",  property="og:description")
 
-    txt.insert(INSERT,description["content"])
+txt.insert(INSERT,description["content"])
 
 
 button1 = tk.Button(text='Get the Square Root', command=getSquareRoot, bg='brown', fg='white', font=('helvetica', 9, 'bold'))

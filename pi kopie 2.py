@@ -1,5 +1,6 @@
 import sys
 import urllib2
+
 iny = sys.argv[1]
 fp = urllib2.urlopen(iny)
 instaurl = fp.geturl()
@@ -34,13 +35,16 @@ for prefix in prefix_list:
     if not os.path.isdir(path):
         exit()
 
-
-#test link googe docs https://docs.google.com/document/d/17WRu2xbcR_yqTmWaebbTjlKUcdCqNb-3wDx5A_SHui8/edit?usp=sharing
+#test googe   https://docs.google.com/document/d/17WRu2xbcR_yqTmWaebbTjlKUcdCqNb-3wDx5A_SHui8/edit?usp=sharing
 import wget
 local_image_filename = wget.download(image["content"], out=path)
 
-import time
-print("Hernoem de Afbeelding naar {%d}".format( % currentDT.second))
 
-print("")
-print("\nklaar ja kan nu naar de tatiana map gaan")
+x = len(os.listdir('/Users/MWK/Desktop/tatiana/'))+1
+#print(x)
+
+source = local_image_filename
+
+dest = '/Users/MWK/Desktop/tatiana/tatiana_art_{n}.jpg'.format(n=x)
+
+os.rename(source, dest)
