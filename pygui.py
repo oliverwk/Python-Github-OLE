@@ -2,8 +2,6 @@ from appJar import gui
 import os
 import sys
 from PIL import Image, ImageTk
-#def press():
-    #print("User:", app.entry("URLINSTA"), "Pass:", app.entry("Password"))
 
 def press():
     os.system('clear')
@@ -45,24 +43,25 @@ def press():
              os.mkdir(path)
          if not os.path.isdir(path):
              exit()
-
+    print("")
     local_image_filename = wget.download(image["content"], out=path)
     x = len(os.listdir('/Users/MWK/Desktop/tatiana/'))-1
     source = local_image_filename
     dest = '/Users/MWK/Desktop/tatiana/tatiana_art_{n}.jpg'.format(n=x)
 
     os.rename(source, dest)
-    from PIL import Image
-    img = Image.open(dest)
-    img.show()
-
-    sys.exit
-    app.stop
-
-with gui("Login Window", "500x300", font={'size':14}) as app:
-    dest = '/Users/MWK/Desktop/tatiana/tatiana_art_10.jpg'
+    image = Image.open(dest)
+    new_image = image.resize((270, 480))
+    new_image.save('/Users/MWK/Desktop/tatiana/tatiana_art_{n}.jpg'.format(n=x))
     photo = ImageTk.PhotoImage(Image.open(dest))
     app.addImageData("pic", photo, fmt="PhotoImage")
+    app.stop()
+
+
+
+win_sis = "773x435"
+
+with gui("Login Window", win_sis, font={'size':14}) as app:
     app.label("Welcome to insta downloader")
     app.entry("Instagram url", label=True, focus=True)
     app.buttons(["Submit"], [press])

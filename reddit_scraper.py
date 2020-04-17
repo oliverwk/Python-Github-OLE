@@ -11,8 +11,8 @@ soup = BeautifulSoup(page.content, 'html.parser')
 
 #video = soup.find_all('video')
 
-#print(video)
+print(soup)
 
-sleper = soup.find('video').get('src')
-
+sleper = soup.find('source')
 print(sleper)
+print(sleper['src'])
