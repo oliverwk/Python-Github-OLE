@@ -33,7 +33,7 @@ counters.close()
 if counter > 2:
     reset()
 
-counts = open(".count","w")
+counts = open("/Users/MWK/Desktop/OLE/.count","w")
 num = int(counter)
 num += 1
 if num == 2:
@@ -164,7 +164,7 @@ resp = requests.get(urlp, headers=headers)
 
 def kleuren():
     kleuren_count = 0
-    NAKD_url = open("NAKD_url.txt","w")
+    NAKD_url = open("/Users/MWK/Desktop/OLE/NAKD_url.txt","w")
     NAKD_url_image = open(".NAKD_url_image.txt","w")
     if resw.content == 'Bad Request':
        print("geen witte gevonden")
@@ -263,7 +263,15 @@ def kleuren():
         NAKD_url.write("\n{u}".format(u=urlp))
 
     NAKD_url.close()
+    import shutil
+    name = op['src']
+    image_url = name.rsplit('?', 1)[-2]
+    resk = requests.get(image_url, stream=True)
+    local_file = open('/Users/MWK/Desktop/OLE/temp_nakd.jpg', 'wb')
+    resk.raw.decode_content = True
+    shutil.copyfileobj(resk.raw, local_file)
     global kleuren_count
+
 kleuren()
 
 if kleuren_count == 1:
@@ -271,9 +279,8 @@ if kleuren_count == 1:
 else:
     print("\nEr zijn {k} kleuren gevonden".format(k=kleuren_count))
 
-
 a = prijs
-f = open("NAKD.txt", "r")
+f = open("/Users/MWK/Desktop/OLE/NAKD.txt", "r")
 b = f.readline()
 f.close()
 
@@ -288,12 +295,12 @@ elif a < b:
 if prijs == b:
     print("")
 else:
-    NAKD = open("NAKD.txt","w")
+    NAKD = open("/Users/MWK/Desktop/OLE/NAKD.txt","w")
     NAKD.write(prijs)
     NAKD.close()
 
 
-v = open("NAKD_url.txt", "r")
+v = open("/Users/MWK/Desktop/OLE/NAKD_url.txt", "r")
 ot = v.readline()
 pow = v.readline()
 bo = v.readline()
@@ -353,6 +360,7 @@ if sort == "bh":
 if sort == "body":
     L = [d1, d2, d3, d4, d5, d6, d7, d8, dnew, d10, d11, d12, d13, d14, d15, d16]
 
+
 #L = [d, d1, d3, d4, d5, d6, d7, d8, d9, d18, d12, d13, d14, d15, d16, d99]
 
 if d11 == d1:
@@ -369,3 +377,5 @@ def notify(title, text):
               """.format(text, title))
 
 notify("NA-KD", "Je prijs check is klaar.")
+os.system('python .NA-KD_tags.py nak')
+os.system('python /Users/MWK/Desktop/OLE/img.py nakd')
