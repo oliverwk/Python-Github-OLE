@@ -6,7 +6,7 @@ const scrapeMetatags = (text) => {
 
 
 
-    const urls = Array.from( getUrls(text) );
+    const urls = 'https://wittopkoning.nl';//Array.from( getUrls(text) );
 
     const requests = urls.map(async url => {
 
@@ -24,14 +24,14 @@ const scrapeMetatags = (text) => {
             url,
             title: $('title').first().text(),
             favicon: $('link[rel="shortcut icon"]').attr('href'),
-            // description: $('meta[name=description]').attr('content'),
+            description: $('meta[name=description]').attr('content'),
             description: getMetatag('description'),
             image: getMetatag('image'),
             author: getMetatag('author'),
         }
     });
 
-
+    console.log(title);
     return Promise.all(requests);
 
 }
